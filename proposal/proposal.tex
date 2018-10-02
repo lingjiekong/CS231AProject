@@ -1,0 +1,99 @@
+\documentclass[dvips,12pt]{article}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+\usepackage{enumitem}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+
+\title{CS231A Project Proposal}
+\author{Alex Fu, Lingjie Kong}
+\date{\today}
+
+\maketitle
+
+\section{Problem}
+
+We want to perform 3D reconstruction and recognition through mobile phone cameras in real-time. Specifically, we would like to produce a map representation of 3D reconstructed scenes on object level.\par
+
+Ideally, recognition techniques can improve reconstruction accuracy and vice versa. A successful implementation can be useful for many downstream applications, such as helping disabled people moving around the street, etc.
+
+
+\section{Data}
+
+We will record videos of real life scenes by our own mobile phones cameras. We may also look at existing RGB-D SLAM Dataset and Benchmark for debugging and testing.
+
+\section{Method}
+
+We will first use open source 3D reconstruction algorithm from Dense Visual SLAM for RGB-D Cameras paper through minimizing both the photo-metric and the depth error over all pixels. We will also use open source feature-based methods to better exploit the pose accuracy as well as propose the open source entropy-based similarity measure for key-frame selection and loop closure detection.\par
+
+Second, we will use deep learning especially convolutional neural network to train a model based on labeled data for different 3D object. Eventually, we should be able to use the 3D reconstructed model as well as the trained convolutional neural network to reconstructed the 3D scene as well as accurately classify the 3D objects in the scene.\par
+
+Last, we are thinking about combining the 3D reconstruction as well as the classification into an Expectation Maximization (EM) algorithm to speed both reconstruction as well as classification by letting one boosting the result for the other.
+
+\section{Reading}
+3D reconstruction:
+\begin{itemize}[nolistsep]
+\item Dense Visual SLAM for RGB-D Cameras
+\item ElasticFusion: Dense SLAM without A pose Graph
+\end{itemize}
+
+\noindent 3D classification:
+\begin{itemize}[nolistsep]
+\item Convolutional-Recursive Deep Learning for 3D Object Classification
+\end{itemize}
+
+\noindent EM for 3D reconstruction and classification: 
+\begin{itemize}[nolistsep]
+\item Accelerated Image Reconstruction Using Ordered Subsets of Projection Data
+\end{itemize}
+
+
+\section{Evaluation}
+First, we will evaluate the performance of our 3D-reconstruction performance based on how many images do we need to clip from one video to fully reconstructed the 3D scene.\par
+
+Second, we will evaluate the robustness of our 3D-reconsturction algorithm from different environments to see whether our algorithm and handle the variance.\par
+
+Third, we will evaluate the accuracy of our classification based on a separated test set from training set and validation set to see how accuracy our convolutional neural network can predict the 3D-reconstructed object in one scene.\par
+
+Last, we will also compare the result regarding training time as well as accuracy from two separated reconstruction and classification steps as well as one nested EM reconstruction and classification boosting algorithm eventually.
+
+\section{Progress}
+We would like to follow the timeline below:
+\begin{itemize}[nolistsep]
+\item By May 5: Study and implement 3D reconstruction through SLAM.
+\item By May 12: Study and implement 3D recognition on top of previously reconstructed scenes.
+\item Midterm progress report: First pass implementation completed.
+\item By June 2: Improve reconstruction and recognition results, and implement it on mobile phones in real time.
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{knuthwebsite} 
+RGB-D SLAM Dataset and Benchmark,
+\\\url{http://vision.in.tum.de/data/datasets/rgbd-dataset}
+
+\bibitem{knuthwebsite} 
+Dense Visual SLAM for RGB-D Cameras,
+\\\url{http://webdiis.unizar.es/~raulmur/orbslam/}
+
+\bibitem{knuthwebsite}
+ElasticFusion: Dense SLAM without A pose Graph,  \\\url{http://www.roboticsproceedings.org/rss11/p01.pdf}
+
+\bibitem{knuthwebsite}
+Convolutional-Recursive Deep Learning for 3D Object Classification,
+\\\url{https://papers.nips.cc/paper/4773-convolutional-recursive-deep-learning-for-3d-object-classification.pdf}
+
+\bibitem{knuthwebsite}
+Accelerated Image Reconstruction Using Ordered Subsets of Projection Data,
+\\\url{http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=363108}
+
+\end{thebibliography}
+
+\end{document}

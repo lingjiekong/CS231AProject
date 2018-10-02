@@ -1,0 +1,12 @@
+[label]	cup: 77%
+[bounding box]	423, 500, 63, 172 
+[label]	bottle: 66%
+[bounding box]	388, 434, 184, 296 
+[label]	bowl: 47%
+[bounding box]	248, 375, 319, 382 
+[label]	bottle: 76%
+[bounding box]	248, 329, 156, 311 
+[label]	person: 37%
+[bounding box]	395, 634, 203, 479 
+[label]	person: 72%
+[bounding box]	14, 366, 249, 472 
